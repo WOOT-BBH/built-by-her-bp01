@@ -1,10 +1,12 @@
 # Add the lesson to Circle
 
-After GitHub Pages is live, replace `YOUR-GITHUB-PAGES-URL` below with the published lesson URL.
+The published lesson URL is:
+
+`https://woot-bbh.github.io/built-by-her-bp01/`
 
 ```html
 <iframe
-  src="YOUR-GITHUB-PAGES-URL"
+  src="https://woot-bbh.github.io/built-by-her-bp01/"
   title="Built By Her — Business Planning Lesson 1"
   style="width:100%;height:900px;border:0;border-radius:12px;"
   loading="lazy"
