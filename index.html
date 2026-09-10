@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="description" content="An interactive Built By Her business planning lesson.">
+  <title>What is my business? | Built By Her</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <img src="assets/built-by-her-logo.png" alt="Built By Her - Inside the Womeniverse">
+    <div class="lesson-meta"><span>Module 1 · Business Planning</span><strong>Lesson 1 of 5 · About 20 minutes</strong></div>
+  </header>
+
+  <main>
+    <section class="hero" id="start">
+      <div>
+        <p class="eyebrow">BP-01 · Self-paced</p>
+        <h1>What is my business, who is it for and what problem does it solve?</h1>
+        <p class="lede">Build one plain-English sentence that defines your business as it stands today—and use it to guide a real decision.</p>
+      </div>
+      <aside class="outcome"><span>Your output</span><strong>One working definition of your business.</strong><p>Your answers save automatically on this device.</p></aside>
+    </section>
+
+    <nav class="step-nav" aria-label="Lesson sections">
+      <a href="#learn">1. Learn</a><a href="#activity-1">2. Think</a><a href="#activity-2">3. Build</a><a href="#activity-3">4. Test</a><a href="#finish">5. Finish</a>
+    </nav>
+
+    <section class="panel" id="learn">
+      <p class="eyebrow">The 60-second answer</p>
+      <h2>A definition is a decision tool</h2>
+      <p>It tells you which enquiries to take, which products to make and which requests are a distraction. A usable definition has four parts:</p>
+      <div class="four-grid">
+        <article><span>01</span><h3>What you sell</h3><p>The specific thing a person receives or pays for.</p></article>
+        <article><span>02</span><h3>Who it is for</h3><p>A practical description of the buyer—clear enough to find her.</p></article>
+        <article><span>03</span><h3>The problem or goal</h3><p>What was happening before she came to you.</p></article>
+        <article><span>04</span><h3>The practical result</h3><p>What she has, avoids or can do afterwards.</p></article>
+      </div>
+      <div class="callout"><strong>Accuracy beats polish.</strong> An accurate, slightly clumsy definition is far more useful than a polished, vague one.</div>
+      <details>
+        <summary>See three examples</summary>
+        <div class="examples">
+          <article><h3>Local service</h3><p>“I groom dogs at the owner’s home for people with nervous or elderly dogs within a 20-minute drive of [town], who find a salon visit stressful or impractical, so the dog is washed, clipped and comfortable without leaving the drive.”</p></article>
+          <article><h3>Product business</h3><p>“I bake gluten-free bread and rolls for independent cafés and farm shops in [county] that want a coeliac-safe menu option, so they can serve customers they currently turn away.”</p></article>
+          <article><h3>Knowledge-based business</h3><p>“I handle inbox, diary and supplier admin each month for small charities with no office staff, so the person running the charity is not doing admin at nine o’clock at night.”</p></article>
+        </div>
+      </details>
+    </section>
+
+    <section class="panel activity" id="activity-1">
+      <div class="section-heading"><span>Activity 1</span><div><h2>Think it through</h2><p>Answer from what has actually happened. If you have not traded yet, mark assumptions with an <strong>A</strong>.</p></div></div>
+      <label>What are the last three things someone paid you for, or asked whether you do?<textarea data-save="recent" rows="4" placeholder="Write the actual products, services or requests here…"></textarea></label>
+      <label>Who were those people? Describe them by situation, not personality.<textarea data-save="people" rows="4" placeholder="For example: independent café owners in…"></textarea></label>
+      <label>What was going on for them before they came to you?<textarea data-save="before" rows="4" placeholder="What problem, pressure or goal brought them to you?"></textarea></label>
+      <label>What did they have—or no longer have to worry about—afterwards?<textarea data-save="after" rows="4" placeholder="Describe the practical change…"></textarea></label>
+    </section>
+
+    <section class="panel activity" id="activity-2">
+      <div class="section-heading"><span>Activity 2</span><div><h2>Build your definition</h2><p>Turn the evidence from Activity 1 into four clear parts.</p></div></div>
+      <div class="builder-grid">
+        <label><span>What I sell</span><small>The specific thing bought</small><textarea data-save="sell" rows="3"></textarea></label>
+        <label><span>Who it is for</span><small>Described practically</small><textarea data-save="for" rows="3"></textarea></label>
+        <label><span>The problem or goal</span><small>What is happening beforehand</small><textarea data-save="problem" rows="3"></textarea></label>
+        <label><span>The practical result</span><small>What changes afterwards</small><textarea data-save="result" rows="3"></textarea></label>
+      </div>
+      <div class="sentence-card">
+        <p class="eyebrow">Your working sentence</p>
+        <p class="frame">I <span>[make / provide / sell]</span> <span>[what someone buys]</span> for <span>[who they are]</span>, who <span>[problem or goal]</span>, so <span>[practical result]</span>.</p>
+        <label class="sr-only" for="definition">My definition, version 1</label>
+        <textarea id="definition" data-save="definition" rows="5" placeholder="Write your complete sentence here…"></textarea>
+        <label class="date-label">Date <input type="date" data-save="date"></label>
+      </div>
+      <div class="vague-check">
+        <div><p class="eyebrow">Vague-word check</p><h3>Do any words sound good but carry little information?</h3><p>Common examples: quality, bespoke, supportive, modern, affordable and tailored. Replace each one with the fact underneath it.</p></div>
+        <button class="secondary" id="check-vague" type="button">Check my sentence</button>
+      </div>
+      <div id="vague-result" class="result" role="status" aria-live="polite" hidden></div>
+      <label>My clearer version<textarea data-save="clearer" rows="4" placeholder="Rewrite your sentence with the specific facts…"></textarea></label>
+    </section>
+
+    <section class="panel activity" id="activity-3">
+      <div class="section-heading"><span>Activity 3</span><div><h2>Test a real decision</h2><p>A definition is useful only when it helps you choose.</p></div></div>
+      <label>Name one decision you are weighing up.<textarea data-save="decision" rows="3" placeholder="An enquiry, a product, a piece of work or a place to sell…"></textarea></label>
+      <fieldset>
+        <legend>Hold your definition against it. What happens?</legend>
+        <label class="radio"><input type="radio" name="clarity" value="clearer" data-save="clarity"> The definition makes the decision clearer</label>
+        <label class="radio"><input type="radio" name="clarity" value="silent" data-save="clarity"> The definition stays silent—it may still be too broad</label>
+      </fieldset>
+      <label>What will you do next?<textarea data-save="next-action" rows="3" placeholder="Record the decision or the question you still need to answer…"></textarea></label>
+      <div class="questions"><h3>Ask yourself</h3><ol><li>Could someone correctly say what I sell and who buys it?</li><li>Does anything in my current work sit outside this definition—and is that deliberate?</li><li>Which part am I least sure about, and what evidence would tell me the answer?</li></ol></div>
+    </section>
+
+    <section class="panel ai-panel">
+      <p class="eyebrow">Use AI carefully</p>
+      <h2>Use AI to test clarity—not decide your direction</h2>
+      <p>Write the sentence yourself first. AI does not know your customers, skills, capacity or market.</p>
+      <details><summary>Prompt: Find the vague words</summary><div class="prompt" id="prompt-one">I run a business selling [what you sell] to [who it is for] in the UK. Here is my draft business definition: “[paste your sentence]”. Review it and give me three lists: (1) any word that is vague or could apply to almost any business, with a question that would help me replace it with a specific fact; (2) which of the four parts—what is sold, who it is for, the problem or goal, the practical result—is missing or weakest; (3) any claim in my sentence that I have not evidenced. Do not rewrite the sentence for me, suggest a new business direction or invent facts. List anything you had to assume.</div></details>
+      <details><summary>Prompt: Test what a reader understands</summary><div class="prompt">Read this sentence once: “[paste your sentence]”. Without asking me anything first, tell me in your own words what you think this business sells, who you think buys it, and what problem you think it solves. Then list every point where you had to guess, and the question I would need to answer to remove each guess. Do not fill the gaps yourself or invent details.</div></details>
+    </section>
+
+    <section class="finish" id="finish">
+      <p class="eyebrow">The one thing to remember</p>
+      <h2>A definition is only doing its job when it can rule something out.</h2>
+      <p>If your sentence would let you say yes to every enquiry, every product idea and every opportunity, it is a description rather than a definition.</p>
+      <div class="final-definition"><span>Your definition</span><p id="definition-preview">Your completed sentence will appear here.</p></div>
+      <div class="actions"><button id="download" type="button">Download my answers</button><button id="reset" class="text-button" type="button">Clear my saved answers</button></div>
+      <p class="next"><strong>Next step:</strong> Read your definition aloud to someone who does not know your business. Ask them what you sell and who buys it. Change any part they get wrong.</p>
+    </section>
+  </main>
+
+  <footer>Built By Her · Inside the Womeniverse™ · BP-01</footer>
+  <script src="script.js"></script>
+</body>
+</html>
