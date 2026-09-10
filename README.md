@@ -2,6 +2,8 @@
 
 An interactive, mobile-friendly version of Module 1, Lesson 1: **What is my business, who is it for and what problem does it solve?**
 
+**Live course:** https://woot-bbh.github.io/built-by-her-bp01/
+
 ## Publish with GitHub Pages
 
 1. Create a GitHub repository and push this project to its default branch.
