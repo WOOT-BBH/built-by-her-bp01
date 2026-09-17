@@ -1,28 +1,17 @@
-# Built By Her — BP-01 interactive lesson
+# Built By Her — BP-01 lesson and workbook
 
-An interactive, mobile-friendly version of Module 1, Lesson 1: **What is my business, who is it for and what problem does it solve?**
+Live lesson: https://woot-bbh.github.io/built-by-her-bp01/
 
-**Live course:** https://woot-bbh.github.io/built-by-her-bp01/
+The root index.html, styles.css and script.js are the maintained version. GitHub Actions copies these three files into _site and publishes them to GitHub Pages. The historical dist folder is not used for publishing. Keep changes in GitHub; CodePen is not part of this course.
 
-## Publish with GitHub Pages
+## Future lessons
+Read [LESSON-STANDARD.md](LESSON-STANDARD.md) and [AGENTS.md](AGENTS.md) first. These record the shared visual system, source fidelity, workbook structure, guidance controls, versioning and export requirements. BP-01 v2 follows the final PDF supplied 17 September 2026.
 
-1. Create a GitHub repository and push this project to its default branch.
-2. In the repository, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **GitHub Actions**.
-4. The included workflow publishes the `dist` folder.
+## Learner work
+The browser may retain a temporary draft; no answers are saved to an account or GitHub. Learners must use Export workbook PDF, select Save as PDF in the browser print dialog, and save the file to keep their work. The export includes the completed workbook, not all teaching text. Old v1 drafts remain separately recoverable as text where present.
 
-The live URL can be pasted into a Circle lesson as an embed. A ready-to-copy iframe is included in `CIRCLE-SETUP.md`.
+## Preview
+Run `python3 -m http.server 8000` from the repository root. Open localhost:8000. PDF export uses print styles and includes long multiline answers.
 
-Search engines are asked not to index the lesson. This reduces accidental discovery but is not access control: anyone who knows the GitHub Pages URL can open it.
-
-## Learner data
-
-Answers and progress are stored only in the learner's browser using `localStorage`. No answers are sent to a server. Learners can download a text copy of their work.
-
-## Local preview
-
-Serve the `dist` directory with any static web server, for example:
-
-```bash
-python3 -m http.server 8000 --directory dist
-```
+## Hosting
+GitHub Pages remains publicly reachable. Search-engine exclusion is not access control. This update does not configure Circle embedding.
