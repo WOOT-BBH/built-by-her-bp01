@@ -10,7 +10,7 @@ const ideaActivity = document.getElementById('add-idea').closest('.activity');
 const ideaTemplate = ideaActivity.querySelector('fieldset').cloneNode(true);
 let ideaCount = Math.max(1, Number(state._ideaCount) || 1);
 Object.keys(state).forEach(key => {
- const match = /^idea(\\d+)-/.exec(key);
+ const match = /^idea(\d+)-/.exec(key);
  if (match && typeof state[key] === 'string' && state[key].trim()) ideaCount = Math.max(ideaCount, Number(match[1]));
 });
 ideaCount = Math.min(ideaCount, 1000);
