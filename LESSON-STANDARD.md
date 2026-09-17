@@ -31,3 +31,6 @@ Pages 1–3: sections 01–04 and activity journey. Pages 4–5: one initial ide
 
 ## Optional repeatable entries and alignment
 Show one initial entry for repeatable exercises; use an “Add another …” button to append entries only when requested. Do not hide required distinct questions. Restore all previously answered rows, preserve stable IDs and include dynamically added entries in PDF export and reset. Use shared grid label tracks (subgrid) so wrapped labels do not push textareas out of alignment. Stack fields on mobile. Maintain consistent input heights within each row.
+
+## Generated plan summaries
+Keep the example sentence in the instructions. Hide the generated plan card until at least one relevant answer has non-whitespace content; reveal it when typing or restoring a draft, and hide it again if all those answers are cleared. Label the card “Your completed plan”. Keep the synthesized plan in the PDF export.
