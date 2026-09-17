@@ -27,4 +27,7 @@ Use the shared beforeprint/export handler to build a text-based printable workbo
 7. Publish requested changes to GitHub, verify file contents and live page, and report any deployment uncertainty.
 
 ## BP-01 mapping
-Pages 1–3: sections 01–04 and activity journey. Pages 4–5: three idea rows, nine definition fields including review date plus version date, and a structured 30-day test. Page 6: reflection, AI can/cannot and exact prompts. Pages 7–8: takeaway, FAQs, next step, related lessons and GOV.UK reference. Activity 3's separate action/assumption/evidence/date fields produce the source's combined test statement. Extra guidance is editorial support; it must not change the lesson's scope.
+Pages 1–3: sections 01–04 and activity journey. Pages 4–5: one initial idea row with optional additional rows, nine definition fields including review date plus version date, and a structured 30-day test. Page 6: reflection, AI can/cannot and exact prompts. Pages 7–8: takeaway, FAQs, next step, related lessons and GOV.UK reference. Activity 3's separate action/assumption/evidence/date fields produce the source's combined test statement. Extra guidance is editorial support; it must not change the lesson's scope.
+
+## Optional repeatable entries and alignment
+Show one initial entry for repeatable exercises; use an “Add another …” button to append entries only when requested. Do not hide required distinct questions. Restore all previously answered rows, preserve stable IDs and include dynamically added entries in PDF export and reset. Use shared grid label tracks (subgrid) so wrapped labels do not push textareas out of alignment. Stack fields on mobile. Maintain consistent input heights within each row.
