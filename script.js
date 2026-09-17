@@ -32,6 +32,7 @@ function storageMessage(){status.textContent=storageAvailable?'Temporary draft o
 function update(){
  document.getElementById('definition-preview').textContent=document.getElementById('definition').value.trim()||'Your sentence will appear here.';
  const value=id=>document.getElementById(id).value.trim();
+ document.getElementById('test-summary').closest('.summary-card').hidden = !['test-action','test-assumption','test-evidence','test-date'].some(id=>value(id));
  document.getElementById('test-summary').textContent=`In the next 30 days, I will ${value('test-action')||'[action]'} to test ${value('test-assumption')||'[assumption]'}. I will look for ${value('test-evidence')||'[evidence]'} by ${value('test-date')||'[date]'}.`;
  const deadline=value('test-date'),today=new Date();today.setHours(0,0,0,0);const max=new Date(today);max.setDate(max.getDate()+30);
  document.getElementById('date-guidance').textContent=deadline&&(new Date(deadline+'T00:00:00')<today||new Date(deadline+'T00:00:00')>max)?'The lesson asks for a test within the next 30 days. Check your deadline.':'';
@@ -80,7 +81,7 @@ function buildPrint(){
  label.textContent=(field.closest('fieldset')?field.closest('fieldset').querySelector('legend').textContent+' — ':'')+document.querySelector(`label[for="${field.id}"]`).textContent;
  block.append(label,paragraph(field.value.trim()||'Not yet completed','print-answer'));group.append(block);
  });
- if(i===2){const title=document.createElement('h3');title.textContent='My 30-day test';group.append(title,paragraph(document.getElementById('test-summary').textContent,'print-answer'));}
+ if(i===2){const title=document.createElement('h3');title.textContent='Your completed plan';group.append(title,paragraph(document.getElementById('test-summary').textContent,'print-answer'));}
  out.append(group);
  });
  out.append(paragraph('Next step: Put 30 minutes in your diary this week. Draft the page, read it aloud once, then choose the one assumption you will test before you treat it as fact.'));
