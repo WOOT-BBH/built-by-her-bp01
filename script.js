@@ -1,11 +1,32 @@
 'use strict';
 const LESSON = document.body.dataset.lesson;
 const KEY = `bbh-${LESSON.toLowerCase().replace('-','')}-v${document.body.dataset.version}`;
-const fields = [...document.querySelectorAll('[data-save]')];
+let fields = [];
 const status = document.getElementById('save-status');
 let state = {}, dirty = false, storageAvailable = true;
 try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { storageAvailable = false; }
 if (typeof state !== 'object' || Array.isArray(state)) state = {};
+const ideaActivity = document.getElementById('add-idea').closest('.activity');
+const ideaTemplate = ideaActivity.querySelector('fieldset').cloneNode(true);
+let ideaCount = Math.max(1, Number(state._ideaCount) || 1);
+Object.keys(state).forEach(key => {
+ const match = /^idea(\\d+)-/.exec(key);
+ if (match && typeof state[key] === 'string' && state[key].trim()) ideaCount = Math.max(ideaCount, Number(match[1]));
+});
+ideaCount = Math.min(ideaCount, 1000);
+ideaActivity.querySelectorAll('fieldset').forEach(row => row.remove());
+function appendIdea(number) {
+ const row = ideaTemplate.cloneNode(true);
+ row.querySelector('legend').textContent = 'Working idea ' + number;
+ row.querySelectorAll('[id], [for], [data-save]').forEach(el => {
+  ['id','for','data-save'].forEach(attr => { if(el.hasAttribute(attr)) el.setAttribute(attr, el.getAttribute(attr).replace(/^idea1-/, 'idea'+number+'-')); });
+ });
+ row.querySelectorAll('textarea').forEach(el => { el.value = ''; });
+ document.getElementById('add-idea').before(row);
+ return row;
+}
+for (let n=1;n<=ideaCount;n++) appendIdea(n);
+fields = [...document.querySelectorAll('[data-save]')];
 fields.forEach(field => { field.value = typeof state[field.dataset.save] === 'string' ? state[field.dataset.save] : ''; });
 function storageMessage(){status.textContent=storageAvailable?'Temporary draft on this browser only. Export your PDF to keep your work.':'This browser cannot retain a draft. Keep this page open and export your PDF before leaving.';}
 function update(){
@@ -15,16 +36,29 @@ function update(){
  const deadline=value('test-date'),today=new Date();today.setHours(0,0,0,0);const max=new Date(today);max.setDate(max.getDate()+30);
  document.getElementById('date-guidance').textContent=deadline&&(new Date(deadline+'T00:00:00')<today||new Date(deadline+'T00:00:00')>max)?'The lesson asks for a test within the next 30 days. Check your deadline.':'';
 }
-fields.forEach(field=>field.addEventListener('input',()=>{
+document.addEventListener('input',event=>{
+ const field=event.target;
+ if(!field.matches('[data-save]'))return;
  state[field.dataset.save]=field.value;dirty=true;
  try{localStorage.setItem(KEY,JSON.stringify(state));storageAvailable=true;}catch{storageAvailable=false;}
  storageMessage();update();
-}));
-document.querySelectorAll('.help').forEach((help,i)=>{
+});
+let helpIndex=0;
+function setupHelp(root){root.querySelectorAll('.help').forEach(help=>{
+ const i=helpIndex++;
  const button=help.querySelector('button'),tip=help.querySelector('.tip');tip.id=`guidance-${i}`;button.setAttribute('aria-describedby',tip.id);
  button.addEventListener('click',()=>{help.classList.remove('suppressed');const open=help.classList.toggle('open');button.setAttribute('aria-expanded',String(open));});
  help.addEventListener('keydown',e=>{if(e.key==='Escape'){help.classList.remove('open');help.classList.add('suppressed');button.setAttribute('aria-expanded','false');}});
  help.addEventListener('mouseleave',()=>help.classList.remove('suppressed'));
+});}
+setupHelp(document);
+document.getElementById('add-idea').addEventListener('click',()=>{
+ const row=appendIdea(++ideaCount);setupHelp(row);
+ fields=[...document.querySelectorAll('[data-save]')];
+ state._ideaCount=ideaCount;dirty=true;
+ try{localStorage.setItem(KEY,JSON.stringify(state));storageAvailable=true;}catch{storageAvailable=false;}
+ storageMessage();document.getElementById('idea-status').textContent='Working idea '+ideaCount+' added. Add only as many as you need.';
+ row.querySelector('textarea').focus();
 });
 document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{
  try{await navigator.clipboard.writeText([...button.parentElement.querySelectorAll('p')].map(p=>p.textContent).join('\n\n'));button.textContent='Copied';}
@@ -59,7 +93,7 @@ window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.return
 document.getElementById('reset').addEventListener('click',()=>{
  if(!confirm('Have you exported your PDF? This clears the current workbook draft from this browser.'))return;
  try{localStorage.removeItem(KEY);}catch{}
- fields.forEach(f=>f.value='');state={};dirty=false;update();storageMessage();document.getElementById('export-status').textContent='Current draft cleared.';
+ fields.forEach(f=>f.value='');ideaActivity.querySelectorAll('fieldset').forEach((row,i)=>{if(i>0)row.remove();});ideaCount=1;fields=[...document.querySelectorAll('[data-save]')];document.getElementById('idea-status').textContent='One idea is enough to start.';state={};dirty=false;update();storageMessage();document.getElementById('export-status').textContent='Current draft cleared.';
 });
 // Older answers are deliberately not mapped into questions with different meanings.
 try{
