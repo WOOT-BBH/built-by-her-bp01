@@ -3,3 +3,13 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @page{size:A4;margin:18mm}
 @media print{body{background:white;color:#17222b;font:11pt/1.5 system-ui,sans-serif}body>header,main,body>footer{display:none!important}#print-workbook{display:block}#print-workbook h1{font-size:24pt}#print-workbook h2{font-size:18pt;border-bottom:2px solid #238e8c;padding-bottom:8px;margin-top:22px;break-after:avoid}#print-workbook h3{font:700 11pt/1.5 system-ui;margin:15px 0 6px;break-after:avoid}#print-workbook p{orphans:3;widows:3;margin-bottom:12px}#print-workbook img{width:180px}#print-workbook .print-field{break-inside:auto}#print-workbook .print-answer{border-left:2px solid #d7e1e5;padding-left:12px}#print-workbook .print-meta{font-size:9pt;color:#526674}.print-group{break-before:page}}
+
+/* Aligned workbook rows: labels share a track even when they wrap. */
+.grid.three{grid-template-rows:auto 1fr;column-gap:22px;row-gap:9px}
+.grid.three>.field{display:grid;grid-template-rows:subgrid;grid-row:span 2;gap:9px;margin:12px 0}
+.grid.three .label-line{align-items:start;justify-content:space-between;gap:10px}
+.grid.three textarea{margin-top:0;height:130px;min-height:130px}
+.label-line .help{margin-top:2px}
+.idea-note{font-size:.9rem;color:#526674;margin-top:8px}
+@supports not (grid-template-rows:subgrid){.grid.three>.field{display:flex;flex-direction:column}.grid.three .label-line{min-height:3.3em}}
+@media(max-width:720px){.grid.three{grid-template-rows:none;gap:16px}.grid.three>.field{display:block;grid-row:auto;margin:0}.grid.three .label-line{min-height:0}.grid.three textarea{margin-top:9px}}
