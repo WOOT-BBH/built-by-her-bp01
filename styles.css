@@ -13,3 +13,34 @@
 .idea-note{font-size:.9rem;color:#526674;margin-top:8px}
 @supports not (grid-template-rows:subgrid){.grid.three>.field{display:flex;flex-direction:column}.grid.three .label-line{min-height:3.3em}}
 @media(max-width:720px){.grid.three{grid-template-rows:none;gap:16px}.grid.three>.field{display:block;grid-row:auto;margin:0}.grid.three .label-line{min-height:0}.grid.three textarea{margin-top:9px}}
+
+/* Source diagrams and separate workbook strands. */
+.definition-flow,.activity-flow{margin:30px 0}.definition-flow figcaption,.activity-flow figcaption{font-weight:800;letter-spacing:.08em;color:var(--teal);font-size:.8rem;margin-bottom:16px}.flow-box{border:1px solid var(--navy);padding:18px 22px;background:#faf8f5}.flow-box strong{display:block;color:var(--navy);margin-bottom:6px}.flow-box p:last-child{margin-bottom:0}.flow-arrow{text-align:center;color:var(--navy);line-height:1;padding:10px}.flow-pair{display:grid;grid-template-columns:1fr 1fr}.flow-pair .flow-box{border-color:var(--teal)}.flow-pair .check{border-color:var(--purple)}.flow-box.output{border-color:var(--teal);background:#edf8f7}.flow-caption{font-size:.9rem;font-style:italic;margin-top:12px}.strand-tools{background:#edf8f7;border:1px solid #b4dcd9;border-radius:12px;padding:24px;margin:30px 0}.strand-tools label{display:block;margin-top:14px}.strand-tools select{width:100%;padding:12px;font:inherit;color:var(--navy);border:1px solid #a8bcc6;border-radius:8px;background:white;margin-top:8px}.strand-tools button{margin-top:18px}#strand-status{font-size:.9rem;margin:10px 0 0}
+@media(max-width:720px){.flow-pair{grid-template-columns:1fr}.flow-box{padding:16px}.strand-tools{padding:18px}}
+@media print{
+ #print-workbook .panel{border:0;border-radius:0;box-shadow:none;padding:0;margin:22px 0;background:white;break-inside:auto}
+ #print-workbook .grid,#print-workbook .grid.three{display:block}
+ #print-workbook .field{display:block;margin:15px 0;break-inside:auto}
+ #print-workbook .label-line{display:block;break-after:avoid}
+ #print-workbook label{display:block;break-after:avoid}
+ #print-workbook .print-guidance{font-size:9pt;color:#526674;margin:4px 0 6px}
+ #print-workbook .activity{break-before:page;border-top:2px solid #238e8c}
+ #print-workbook fieldset{break-inside:auto;margin:12px 0;padding:12px}
+ #print-workbook legend{font-weight:bold}
+ #print-workbook details{display:block;break-inside:auto}
+ #print-workbook summary{break-after:avoid;list-style:none}
+ #print-workbook summary::marker{content:''}
+ #print-workbook figure{break-inside:avoid;margin:20px 0}
+ #print-workbook .flow-pair{display:grid;grid-template-columns:1fr 1fr}
+ #print-workbook .flow-box{padding:10px 14px}
+ #print-workbook .flow-arrow{padding:6px}
+ #print-workbook .summary-card{break-inside:auto}
+ #print-workbook h2,#print-workbook h3,#print-workbook h4{break-after:avoid}
+ #print-workbook a{overflow-wrap:anywhere}
+ #print-workbook a[href^='http']::after{content:' (' attr(href) ')';font-size:9pt}
+}
+@media print{
+ #print-workbook .eyebrow{break-after:avoid;margin-bottom:5px}
+ #print-workbook [data-section='section-1'],#print-workbook [data-section='section-2'],#print-workbook [data-section='section-3']{break-inside:avoid}
+}
+@page{ @bottom-left{content:'BUILT BY HER · BP-01';font:8pt sans-serif;color:#526674} @bottom-right{content:counter(page);font:8pt sans-serif;color:#526674} }
