@@ -4,8 +4,20 @@ const KEY = `bbh-${LESSON.toLowerCase().replace('-','')}-v${document.body.datase
 let fields = [];
 const status = document.getElementById('save-status');
 let state = {}, dirty = false, storageAvailable = true;
+const RELEASE = document.body.dataset.release;
+const STRANDS_KEY = KEY + '-strands';
+let strandBook;
 try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch { storageAvailable = false; }
 if (typeof state !== 'object' || Array.isArray(state)) state = {};
+try { strandBook=JSON.parse(localStorage.getItem(STRANDS_KEY)); } catch {}
+if(!strandBook || !Array.isArray(strandBook.items) || !strandBook.items.length) strandBook={active:0,items:[{name:'My business',answers:state}]};
+if(!Number.isInteger(strandBook.active)||!strandBook.items[strandBook.active])strandBook.active=0;
+state=strandBook.items[strandBook.active].answers||{};
+function persistDraft(){
+ strandBook.items[strandBook.active].answers=state;
+ localStorage.setItem(STRANDS_KEY,JSON.stringify(strandBook));
+}
+
 const ideaActivity = document.getElementById('add-idea').closest('.activity');
 const ideaTemplate = ideaActivity.querySelector('fieldset').cloneNode(true);
 let ideaCount = Math.max(1, Number(state._ideaCount) || 1);
@@ -41,7 +53,7 @@ document.addEventListener('input',event=>{
  const field=event.target;
  if(!field.matches('[data-save]'))return;
  state[field.dataset.save]=field.value;dirty=true;
- try{localStorage.setItem(KEY,JSON.stringify(state));storageAvailable=true;}catch{storageAvailable=false;}
+ try{persistDraft();storageAvailable=true;}catch{storageAvailable=false;}
  storageMessage();update();
 });
 let helpIndex=0;
@@ -57,7 +69,7 @@ document.getElementById('add-idea').addEventListener('click',()=>{
  const row=appendIdea(++ideaCount);setupHelp(row);
  fields=[...document.querySelectorAll('[data-save]')];
  state._ideaCount=ideaCount;dirty=true;
- try{localStorage.setItem(KEY,JSON.stringify(state));storageAvailable=true;}catch{storageAvailable=false;}
+ try{persistDraft();storageAvailable=true;}catch{storageAvailable=false;}
  storageMessage();document.getElementById('idea-status').textContent='Working idea '+ideaCount+' added. Add only as many as you need.';
  row.querySelector('textarea').focus();
 });
@@ -67,24 +79,41 @@ document.querySelectorAll('.copy').forEach(button=>button.addEventListener('clic
 }));
 function paragraph(text,cls){const p=document.createElement('p');p.textContent=text;if(cls)p.className=cls;return p;}
 function buildPrint(){
+ update();
  const out=document.getElementById('print-workbook');out.replaceChildren();
  out.append(document.querySelector('.topbar img').cloneNode());
- const h=document.createElement('h1');h.textContent='My Business Definition Page';out.append(h);
- out.append(paragraph('Built By Her · Module 1 · Business Planning · BP-01 · Version 2','print-meta'));
- out.append(paragraph(document.querySelector('h1').textContent));
- out.append(paragraph('Export prepared: '+new Date().toLocaleDateString('en-GB')+'. A working definition, to be reviewed as evidence develops.','print-meta'));
- document.querySelectorAll('.activity').forEach((activity,i)=>{
- const group=document.createElement('div');if(i>0)group.className='print-group';
- const title=document.createElement('h2');title.textContent=`Activity ${i+1}: ${activity.querySelector('h3').textContent}`;group.append(title);
- activity.querySelectorAll('[data-save]').forEach(field=>{
- const block=document.createElement('div');block.className='print-field';const label=document.createElement('h3');
- label.textContent=(field.closest('fieldset')?field.closest('fieldset').querySelector('legend').textContent+' — ':'')+document.querySelector(`label[for="${field.id}"]`).textContent;
- block.append(label,paragraph(field.value.trim()||'Not yet completed','print-answer'));group.append(block);
+ const h=document.createElement('h1');h.textContent=document.querySelector('h1').textContent;out.append(h);
+ out.append(paragraph('Built By Her · Module 1 · Business Planning · BP-01 · Version '+RELEASE,'print-meta'));
+ out.append(paragraph('Business strand: '+strandBook.items[strandBook.active].name));
+ out.append(paragraph('Export prepared: '+new Date().toLocaleDateString('en-GB')+' · Full lesson and completed workbook','print-meta'));
+ document.querySelectorAll('main > section.panel:not(.export)').forEach(section=>{
+  const clone=section.cloneNode(true);
+  clone.dataset.section=section.id;
+  clone.querySelectorAll('[data-save]').forEach(field=>{
+   const live=document.getElementById(field.id);
+   field.replaceWith(paragraph(live.value.trim()||'Not yet completed','print-answer'));
+  });
+  clone.querySelectorAll('.help').forEach(help=>{
+   const tip=help.querySelector('.tip');
+   help.replaceWith(paragraph('Guidance: '+tip.textContent,'print-guidance'));
+  });
+  clone.querySelectorAll('details').forEach(detail=>detail.open=true);
+  clone.querySelectorAll('.strand-tools,button,#idea-status,#date-guidance').forEach(el=>el.remove());
+  const plan=clone.querySelector('#plan-summary');
+  if(plan){
+   const values=['test-action','test-assumption','test-evidence','test-date'].map(id=>document.getElementById(id).value.trim());
+   if(!values.some(Boolean))plan.remove();
+   else {
+    plan.hidden=false;
+    plan.querySelector('h4').textContent=values.every(Boolean)?'Your completed plan':'Your plan so far';
+    plan.querySelector('p').textContent='In the next 30 days, I will '+(values[0]||'(action not yet completed)')+' to test '+(values[1]||'(assumption not yet completed)')+'. I will look for '+(values[2]||'(evidence not yet completed)')+' by '+(values[3]||'(date not yet completed)')+'.';
+   }
+  }
+  clone.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+  clone.removeAttribute('id');
+  clone.querySelectorAll('label').forEach(el=>el.removeAttribute('for'));
+  out.append(clone);
  });
- if(i===2){const title=document.createElement('h3');title.textContent='Your completed plan';group.append(title,paragraph(document.getElementById('test-summary').textContent,'print-answer'));}
- out.append(group);
- });
- out.append(paragraph('Next step: Put 30 minutes in your diary this week. Draft the page, read it aloud once, then choose the one assumption you will test before you treat it as fact.'));
 }
 window.addEventListener('beforeprint',buildPrint);
 document.getElementById('export-pdf').addEventListener('click',()=>{
@@ -92,9 +121,9 @@ document.getElementById('export-pdf').addEventListener('click',()=>{
 });
 window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
 document.getElementById('reset').addEventListener('click',()=>{
- if(!confirm('Have you exported your PDF? This clears the current workbook draft from this browser.'))return;
+ if(!confirm('Have you exported your PDF? This clears answers for the selected business strand only.'))return;
  try{localStorage.removeItem(KEY);}catch{}
- fields.forEach(f=>f.value='');ideaActivity.querySelectorAll('fieldset').forEach((row,i)=>{if(i>0)row.remove();});ideaCount=1;fields=[...document.querySelectorAll('[data-save]')];document.getElementById('idea-status').textContent='One idea is enough to start.';state={};dirty=false;update();storageMessage();document.getElementById('export-status').textContent='Current draft cleared.';
+ fields.forEach(f=>f.value='');ideaActivity.querySelectorAll('fieldset').forEach((row,i)=>{if(i>0)row.remove();});ideaCount=1;fields=[...document.querySelectorAll('[data-save]')];document.getElementById('idea-status').textContent='One idea is enough to start.';state={};try{persistDraft();}catch{storageAvailable=false;}dirty=false;update();storageMessage();document.getElementById('export-status').textContent='Current draft cleared.';
 });
 // Older answers are deliberately not mapped into questions with different meanings.
 try{
@@ -106,3 +135,42 @@ try{
  }
 }catch{}
 storageMessage();update();
+
+
+function renderStrands(){
+ const select=document.getElementById('strand-select');select.replaceChildren();
+ strandBook.items.forEach((strand,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=strand.name;select.append(opt);});
+ select.value=strandBook.active;
+ document.getElementById('strand-name').value=strandBook.items[strandBook.active].name;
+}
+function restoreStrand(){
+ state=strandBook.items[strandBook.active].answers||{};
+ ideaActivity.querySelectorAll('fieldset').forEach(row=>row.remove());
+ ideaCount=Math.max(1,Number(state._ideaCount)||1);
+ Object.keys(state).forEach(key=>{const match=/^idea(\d+)-/.exec(key);if(match&&typeof state[key]==='string'&&state[key].trim())ideaCount=Math.max(ideaCount,Number(match[1]));});
+ for(let n=1;n<=ideaCount;n++){const row=appendIdea(n);setupHelp(row);}
+ fields=[...document.querySelectorAll('[data-save]')];
+ fields.forEach(field=>field.value=typeof state[field.dataset.save]==='string'?state[field.dataset.save]:'');
+ document.getElementById('idea-status').textContent='Add only as many ideas as you need.';
+ renderStrands();update();storageMessage();
+}
+document.getElementById('strand-select').addEventListener('change',event=>{
+ strandBook.items[strandBook.active].answers=state;
+ strandBook.active=Number(event.target.value);restoreStrand();
+ try{persistDraft();}catch{storageAvailable=false;}storageMessage();
+ document.getElementById('strand-status').textContent='Showing '+strandBook.items[strandBook.active].name+'.';
+});
+document.getElementById('strand-name').addEventListener('input',event=>{
+ strandBook.items[strandBook.active].name=event.target.value.trim()||'Untitled strand';
+ document.getElementById('strand-select').selectedOptions[0].textContent=strandBook.items[strandBook.active].name;
+ dirty=true;try{persistDraft();}catch{storageAvailable=false;}storageMessage();
+});
+document.getElementById('add-strand').addEventListener('click',()=>{
+ strandBook.items[strandBook.active].answers=state;
+ strandBook.items.push({name:'Business strand '+(strandBook.items.length+1),answers:{}});
+ strandBook.active=strandBook.items.length-1;restoreStrand();dirty=true;
+ try{persistDraft();}catch{storageAvailable=false;}storageMessage();
+ document.getElementById('strand-status').textContent='New workbook added. Your other strand’s answers are preserved. Give this strand a name.';
+ document.getElementById('strand-name').focus();document.getElementById('strand-name').select();
+});
+renderStrands();
