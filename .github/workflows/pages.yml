@@ -31,6 +31,8 @@ jobs:
           cp bp02/index.html bp02/styles.css bp02/script.js _site/bp02/
           mkdir -p _site/bp03
           cp bp03/index.html bp03/styles.css bp03/script.js _site/bp03/
+          mkdir -p _site/bp04
+          cp bp04/index.html bp04/styles.css bp04/script.js _site/bp04/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
