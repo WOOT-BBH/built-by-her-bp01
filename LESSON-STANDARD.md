@@ -46,3 +46,6 @@ Module 1 Lesson 2 is published at `bp02/` in this repository. Its independent sc
 
 ## BP-03 implementation
 Module 1 Lesson 3 is published at `bp03/`; see its SOURCE-AUDIT.md for all ten source pages and adaptations. It uses isolated `bbh-bp03-v1-strands` storage. Preserve the initial notes, eight direction questions, dates, 30-day action/change/evidence/deadline, source AI prompts and final action. Both full workbook and concise direction-page exports are supported; never replace source-specific fields with another lesson's outputs.
+
+## BP-04 implementation
+Module 1 Lesson 4 is published at `bp04/` with isolated `bbh-bp04-v1-strands` storage. See its SOURCE-AUDIT.md. Preserve the four-candidate maximum, all priority questions including review decision and first action, full source AI prompts, and full/concise PDF exports. Source instructions govern row limits even where printed tables contain extra blank rows.
