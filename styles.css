@@ -44,3 +44,18 @@
  #print-workbook [data-section='section-1'],#print-workbook [data-section='section-2'],#print-workbook [data-section='section-3']{break-inside:avoid}
 }
 @page{ @bottom-left{content:'BUILT BY HER · BP-01';font:8pt sans-serif;color:#526674} @bottom-right{content:counter(page);font:8pt sans-serif;color:#526674} }
+
+
+/* Optional source writing spaces share the workbook field system. */
+.source-notes{border-top:1px solid var(--line);padding-top:20px;margin:28px 0}.field-guidance{font-size:.95rem;margin:8px 0 0;color:#526674}.source-notes input[type=date]{max-width:320px}@media print{#print-workbook .source-notes{break-inside:auto}#print-workbook .source-notes h3{break-after:avoid}}
+/* Keep short workbook entries and dates together in the exported document. */
+@media print{
+ body{font-size:10pt;line-height:1.45}
+ #print-workbook .field{margin:10px 0;break-inside:avoid}
+ #print-workbook .print-guidance{font-size:8.5pt;margin:3px 0 5px}
+ #print-workbook .print-answer{margin-bottom:8px}
+ #print-workbook fieldset{break-inside:avoid}
+ #print-workbook .activity>.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;break-inside:avoid}
+}
+
+@media print{#print-workbook .example,#print-workbook details.prompt{break-inside:avoid}}
