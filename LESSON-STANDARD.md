@@ -40,3 +40,6 @@ Offer one workbook initially with an optional Add a business strand control. Kee
 
 ## Source audit gate
 For every PDF revision, record the source filename, page count, checksum and date, then create a page-to-screen/export mapping before publication. Check writing spaces and diagram captions as well as paragraphs: blank ruled areas may be workbook requirements. Record deliberate adaptations, never silently omit them. Keep stable field IDs/storage schema when question meanings do not change. New fields must participate in saving, reset, strand switching and export. Label AI prompts visibly with their source numbers. Do not force browser exports to match source page counts: preserve readable pagination for variable answer lengths. Release 2.5 adds begin-notes, final-action and final-review without changing the v2 storage schema.
+
+## BP-02 implementation
+Module 1 Lesson 2 is published at `bp02/` in this repository. Its independent schema is `bbh-bp02-v1-strands`; do not reuse BP-01 identifiers or generated outputs across lessons. See `bp02/SOURCE-AUDIT.md` for the ten-page source mapping. BP-02 adds optional repeatable needs, two initial decision rules and an optional third, full workbook PDF and concise requirements statement PDF. Keep all source-specific prompts, teaching and export fields when adapting the common visual components.
