@@ -43,3 +43,6 @@ For every PDF revision, record the source filename, page count, checksum and dat
 
 ## BP-02 implementation
 Module 1 Lesson 2 is published at `bp02/` in this repository. Its independent schema is `bbh-bp02-v1-strands`; do not reuse BP-01 identifiers or generated outputs across lessons. See `bp02/SOURCE-AUDIT.md` for the ten-page source mapping. BP-02 adds optional repeatable needs, two initial decision rules and an optional third, full workbook PDF and concise requirements statement PDF. Keep all source-specific prompts, teaching and export fields when adapting the common visual components.
+
+## BP-03 implementation
+Module 1 Lesson 3 is published at `bp03/`; see its SOURCE-AUDIT.md for all ten source pages and adaptations. It uses isolated `bbh-bp03-v1-strands` storage. Preserve the initial notes, eight direction questions, dates, 30-day action/change/evidence/deadline, source AI prompts and final action. Both full workbook and concise direction-page exports are supported; never replace source-specific fields with another lesson's outputs.
