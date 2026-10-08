@@ -49,3 +49,6 @@ Module 1 Lesson 3 is published at `bp03/`; see its SOURCE-AUDIT.md for all ten s
 
 ## BP-04 implementation
 Module 1 Lesson 4 is published at `bp04/` with isolated `bbh-bp04-v1-strands` storage. See its SOURCE-AUDIT.md. Preserve the four-candidate maximum, all priority questions including review decision and first action, full source AI prompts, and full/concise PDF exports. Source instructions govern row limits even where printed tables contain extra blank rows.
+
+## BP-05 implementation
+Module 1 Lesson 5 is published at `bp05/`; see its nine-page SOURCE-AUDIT.md. Isolated storage is `bbh-bp05-v1-strands`. Both possible-action and scheduled-action groups begin with one row and allow up to three, following the source's explicit limit. Each planned action retains its own first step, first date and protected time. Preserve priority, day-90 result, evidence, midpoint/end reviews, version/page-review dates and first scheduled action. Full workbook and concise 90-Day Action Page exports include dynamically added actions. Activity 3 deliberately uses the source's 30-day first-action wording inside the 90-day plan. Do not invent an unpublished Module 2 URL.
