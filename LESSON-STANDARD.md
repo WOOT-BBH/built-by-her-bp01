@@ -64,3 +64,6 @@ Published at `m02-l03/`, isolated `bbh-m02l03-v1-strands` storage. Preserve the 
 
 ## M02-L04
 Published at `m02-l04/`, isolated `bbh-m02l04-v1-strands` storage. Preserve eight Offer Design questions, optional observations, included/excluded boundaries, willingness-to-pay evidence, exact AI prompts, full/concise exports and the 30-day test. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+## M02-L05
+Published at `m02-l05/`, isolated `bbh-m02l05-v1-strands` storage. Preserve all eight model/route questions, payment timing, delivery requirements, optional observations, exact AI prompts, both exports and the 30-day test. See SOURCE-AUDIT.md and LESSON-SUMMARY.md. Source guidance date: 6 October 2026.
