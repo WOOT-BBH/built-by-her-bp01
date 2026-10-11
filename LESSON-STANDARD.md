@@ -61,3 +61,6 @@ M02-L02 is published at `m02-l02/` with isolated `bbh-m02l02-v1-strands` storage
 
 ## M02-L03
 Published at `m02-l03/`, isolated `bbh-m02l03-v1-strands` storage. Preserve the five-alternative limit, all eight Competitor Snapshot questions, full AI prompts, notes, research plan and both exports. See SOURCE-AUDIT.md and LESSON-SUMMARY.md for source mapping and Circle copy.
+
+## M02-L04
+Published at `m02-l04/`, isolated `bbh-m02l04-v1-strands` storage. Preserve eight Offer Design questions, optional observations, included/excluded boundaries, willingness-to-pay evidence, exact AI prompts, full/concise exports and the 30-day test. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
