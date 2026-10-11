@@ -58,3 +58,6 @@ Module 2 is Business Idea and Offer, six lessons. Its first lesson is `m02-l01/`
 
 ## M02-L02 and lesson delivery summaries
 M02-L02 is published at `m02-l02/` with isolated `bbh-m02l02-v1-strands` storage. Preserve all eight Ideal Customer Page questions, optional customer/enquiry rows, notes and the 30-day customer-question plan. See its SOURCE-AUDIT.md. Every completed lesson must be delivered with a short WOOT-style introduction, three learning bullets, “You’ll leave with”, the verified live workbook link and the PDF export reminder. Use warm, practical, evidence-led wording without em dashes. Save the copy as LESSON-SUMMARY.md alongside the lesson for reuse in Circle.
+
+## M02-L03
+Published at `m02-l03/`, isolated `bbh-m02l03-v1-strands` storage. Preserve the five-alternative limit, all eight Competitor Snapshot questions, full AI prompts, notes, research plan and both exports. See SOURCE-AUDIT.md and LESSON-SUMMARY.md for source mapping and Circle copy.
