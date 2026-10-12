@@ -67,3 +67,7 @@ Published at `m02-l04/`, isolated `bbh-m02l04-v1-strands` storage. Preserve eigh
 
 ## M02-L05
 Published at `m02-l05/`, isolated `bbh-m02l05-v1-strands` storage. Preserve all eight model/route questions, payment timing, delivery requirements, optional observations, exact AI prompts, both exports and the 30-day test. See SOURCE-AUDIT.md and LESSON-SUMMARY.md. Source guidance date: 6 October 2026.
+
+
+## Module 2 Lesson 6 continuity
+M02-L06 is in `m02-l06/`, sourced from `BBH_M02_L06_Clear-Message.pdf` (10 pages). See its SOURCE-AUDIT.md and LESSON-SUMMARY.md. Retain all eight Clear Offer Message fields, both complete AI prompts, evidence and unsupported-claim guidance, conditional test summary and isolated `bbh-m02l06-v1-strands` storage. This completes Module 2. Future lessons must retain the shared layout, optional rows, accessible help and full/concise PDF exports, checked against every source page.
