@@ -79,3 +79,7 @@ Module 3 is Business Setup and Protection, seven lessons. M03-L01 / SP-01 lives 
 
 ## SP-02 / Module 3 Lesson 2
 Published at `m03-l02/`, source BBH_M03_L02_SP-02_Business-Money-and-Records.pdf (eight pages). Nine sections, five full-width source questions and one optional next-question field; one optional AI prompt. Preserve all transaction/evidence distinctions, three examples, official links and later-task boundaries. Isolated storage: bbh-m03l02-v1-strands. Full and concise notes exports; see SOURCE-AUDIT.md and LESSON-SUMMARY.md. SP-02 is now published; MN-05 remains a text reference.
+
+
+## SP-03 / Module 3 Lesson 3
+Published at `m03-l03/`, source BBH_M03_L03_SP-03_Insurance-Requirements.pdf (eight pages). Nine sections, five distinct full-width questions, optional next question and one exact optional AI prompt. Retain all cover distinctions, claims timing, legal/contractual/own-risk distinctions, three complete examples and official resources. This prepares discussion, not policy selection or confirmation of cover. Isolated storage: bbh-m03l03-v1-strands. Full and concise notes exports. SP-07 remains text until published. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
