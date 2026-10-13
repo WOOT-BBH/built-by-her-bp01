@@ -99,3 +99,7 @@ Published at `m03-l06/`, source BBH_M03_L06_SP-06_Privacy-Data-and-Online-Tradin
 
 ## Module 4 / BM-01
 Module 4 is Brand and Messaging, six lessons. BM-01 lives at m04-l01/, source BBH_M04_L01_BM-01_Brand-Identity.pdf (six pages). Preserve nine sections, six main questions and four optional reflection fields representing blank source writing boxes. Three complete examples, exact optional AI prompt, two FAQs, further reading and unpublished BM-02 title. No logo or design output required. Isolated bbh-m04l01-v1-strands storage; shared full/concise exports, contextual guidance and export reminders. Source and print review plus ten-field behavioural tests passed. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+
+## BM-02 / Module 4 Lesson 2
+Published at m04-l02/, source BBH_M04_L02_BM-02_Brand-Values.pdf (six pages). Five main prompts for decision, one/two values, observable actions, two plausible responses, provisional choice and limit. Five optional reflections preserve source writing boxes. Retain all three examples, complete editor example across pages 3–4, exact optional AI prompt and two FAQs. Full/concise exports, isolated bbh-m04l02-v1-strands storage and shared guidance/export reminders. Ten fields tested including blocked storage, separate workbooks, safe multiline and long-answer print output. Both exports visually reviewed. BM-01 and BM-02 link both ways. See source audit and Circle summary alongside the lesson.
