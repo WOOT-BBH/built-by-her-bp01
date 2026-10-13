@@ -95,3 +95,7 @@ Published at `m03-l05/`, source BBH_M03_L05_SP-05_Professional-Drafting-or-Revie
 
 ## SP-06 / Module 3 Lesson 6
 Published at `m03-l06/`, source BBH_M03_L06_SP-06_Privacy-Data-and-Online-Trading.pdf (nine pages). Nine sections, six distinct questions mapping one interaction, including its first unresolved question; do not duplicate that question in section 9. Preserve purpose/marketing distinctions, provider unknowns, health-data safeguards, tracking exceptions, consumer/digital-sale distinctions, three complete examples and exact optional AI prompt. 30 minutes: 13 reading, 12 notes, 5 review. Isolated bbh-m03l06-v1-strands storage; optional separate interactions and full/concise notes exports. All five official resources and published SP-05 link retained. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+
+## Module 4 / BM-01
+Module 4 is Brand and Messaging, six lessons. BM-01 lives at m04-l01/, source BBH_M04_L01_BM-01_Brand-Identity.pdf (six pages). Preserve nine sections, six main questions and four optional reflection fields representing blank source writing boxes. Three complete examples, exact optional AI prompt, two FAQs, further reading and unpublished BM-02 title. No logo or design output required. Isolated bbh-m04l01-v1-strands storage; shared full/concise exports, contextual guidance and export reminders. Source and print review plus ten-field behavioural tests passed. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
