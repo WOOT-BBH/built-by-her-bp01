@@ -87,3 +87,7 @@ Published at `m03-l03/`, source BBH_M03_L03_SP-03_Insurance-Requirements.pdf (ei
 
 ## SP-04 / Module 3 Lesson 4
 Published at `m03-l04/`, source BBH_M03_L04_SP-04_Contracts-Terms-and-Agreements.pdf (eight pages). Nine sections, five distinct full-width questions, optional priority question and one exact optional AI prompt. Preserve contract formation/timing, consumer/business and jurisdiction distinctions, document purposes, privacy/IP boundaries, all examples and resources. Preparation for solicitor advice, not clause drafting or enforceability assessment. Isolated storage: bbh-m03l04-v1-strands. Full and concise notes PDF exports. SP-05 remains text until published. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+
+## SP-05 / Module 3 Lesson 5
+Published at `m03-l05/`, source BBH_M03_L05_SP-05_Professional-Drafting-or-Review-Brief.pdf (nine pages). Five source questions for purpose/context/process/preferences/advice, optional priority question and exact optional AI prompt. Preserve facts/plans/preferences distinctions, privacy sequence and unknown retention, scope/exclusions, all three examples (source pages 4–5), advice boundaries and no prerequisite. Shared full/concise brief exports and isolated bbh-m03l05-v1-strands storage. Optional separate workbooks can hold separate document briefs. SP-04 and SP-05 now link both ways. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
