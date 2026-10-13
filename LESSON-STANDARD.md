@@ -91,3 +91,7 @@ Published at `m03-l04/`, source BBH_M03_L04_SP-04_Contracts-Terms-and-Agreements
 
 ## SP-05 / Module 3 Lesson 5
 Published at `m03-l05/`, source BBH_M03_L05_SP-05_Professional-Drafting-or-Review-Brief.pdf (nine pages). Five source questions for purpose/context/process/preferences/advice, optional priority question and exact optional AI prompt. Preserve facts/plans/preferences distinctions, privacy sequence and unknown retention, scope/exclusions, all three examples (source pages 4–5), advice boundaries and no prerequisite. Shared full/concise brief exports and isolated bbh-m03l05-v1-strands storage. Optional separate workbooks can hold separate document briefs. SP-04 and SP-05 now link both ways. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+
+## SP-06 / Module 3 Lesson 6
+Published at `m03-l06/`, source BBH_M03_L06_SP-06_Privacy-Data-and-Online-Trading.pdf (nine pages). Nine sections, six distinct questions mapping one interaction, including its first unresolved question; do not duplicate that question in section 9. Preserve purpose/marketing distinctions, provider unknowns, health-data safeguards, tracking exceptions, consumer/digital-sale distinctions, three complete examples and exact optional AI prompt. 30 minutes: 13 reading, 12 notes, 5 review. Isolated bbh-m03l06-v1-strands storage; optional separate interactions and full/concise notes exports. All five official resources and published SP-05 link retained. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
