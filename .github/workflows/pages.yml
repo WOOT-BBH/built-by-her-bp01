@@ -77,6 +77,8 @@ jobs:
           cp m06-l02/index.html m06-l02/styles.css m06-l02/script.js _site/m06-l02/
           mkdir -p _site/m06-l03
           cp m06-l03/index.html m06-l03/styles.css m06-l03/script.js _site/m06-l03/
+          mkdir -p _site/m06-l04
+          cp m06-l04/index.html m06-l04/styles.css m06-l04/script.js _site/m06-l04/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
@@ -89,3 +91,4 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
+
