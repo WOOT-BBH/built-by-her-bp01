@@ -98,3 +98,5 @@ jobs:
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
 
+
+# Release includes the complete MV-07 lesson and its assets.
