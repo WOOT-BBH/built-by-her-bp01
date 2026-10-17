@@ -85,6 +85,8 @@ jobs:
           cp m06-l06/index.html m06-l06/styles.css m06-l06/script.js _site/m06-l06/
           mkdir -p _site/m06-l07
           cp m06-l07/index.html m06-l07/styles.css m06-l07/script.js _site/m06-l07/
+          mkdir -p _site/m06-l08
+          cp m06-l08/index.html m06-l08/styles.css m06-l08/script.js _site/m06-l08/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
@@ -99,4 +101,4 @@ jobs:
           artifact_name: github-pages-${{ github.run_attempt }}
 
 
-# Release includes the complete MV-07 lesson and its assets.
+# Release includes the complete MV-08 lesson and its assets.
