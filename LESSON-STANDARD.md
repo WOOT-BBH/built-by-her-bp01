@@ -189,3 +189,10 @@ Published path: m07-l02/. Source: BBH_M07_L02_PR-02_Service-Pricing_Design-A_For
 Retain the nine-section source flow and all examples, including the complete consultant calculation and customer sentence, gardener variability and workshop attendance sensitivity. Five distinct workbook fields cover offer, commitment, amount, approach and uncertainty. Compare two suitable charging methods. Missing figures are allowed; no duration is supplied by the source. Retain the exact optional AI prompt and its limits. Keep internal calculation separate from customer-facing explanation.
 
 Continue PR-01 visual shell, full-width aligned fields, accessible help and separate optional workbooks. Draft key bbh-m07l02-v1-strands; never reuse another lesson’s key. Export full workbook and concise notes; long answers must flow without clipping. Tests cover draft isolation, reset, unavailable storage, escaping, help and long exports. Prominent PDF reminders remain at both ends. No em dashes.
+
+
+## Module 7 Lesson 3: PR-03 product pricing and margin
+
+Path m07-l03/. Source: BBH_M07_L03_PR-03_Product-Pricing-and-Margin_Design-A_Formatted_2026-10-14.pdf (7 pages). See source audit and lesson summary in that directory. Preserve all nine sections, full retailer discount example and maker/wholesale contrasts. Distinguish margin, markup, accounting gross margin, owner-time planning allowance and take-home pay. Keep the exact optional AI prompt and all limitations. No invented duration or target margin.
+
+Five fields: product-route, unit-cost, price-margin, remaining-costs, interpretation. Isolated key bbh-m07l03-v1-strands. Separate optional workbooks per product/route. Inherit PR-02 formatting, help behaviour and selected-workbook full/notes PDF exports. Preserve temporary-draft wording and export reminders. Tests cover source content, arithmetic, storage, isolation, reset, safe text, help and long-answer export. No em dashes.
