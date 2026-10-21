@@ -180,3 +180,12 @@ Published at m05-l06/, source BBH_M05_L06_WO-06_Enquiry-Booking-and-Checkout_Des
 
 ## Module 7 / PR-01
 Module 7 is Pricing, six lessons. PR-01 lives at m07-l01/, source BBH_M07_L01_PR-01_Minimum-Viable-Price_Design-A_Formatted_2026-10-14.pdf (seven pages). Preserve nine sections, five exact questions, all example arithmetic and qualifications, allocated-cost formula, consistent periods, missing figures, owner work counted once and realistic sales rather than capacity. Working minimum is not a selling-price recommendation, viability decision or take-home-pay figure. No duration supplied; do not inherit 30 minutes. Merge repeated workbook introduction. Exact optional AI prompt, two FAQs and Business Wales resource retained; PR-04 and MN-06 remain text. Isolated bbh-m07l01-v1-strands storage, optional separate offers, accessible help, full/notes exports and export warnings. Source-span audit and functional/long-answer PDF checks passed. See SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+
+## Module 7 Lesson 2: PR-02 service pricing
+
+Published path: m07-l02/. Source: BBH_M07_L02_PR-02_Service-Pricing_Design-A_Formatted_2026-10-14.pdf (seven pages). See m07-l02/SOURCE-AUDIT.md and LESSON-SUMMARY.md.
+
+Retain the nine-section source flow and all examples, including the complete consultant calculation and customer sentence, gardener variability and workshop attendance sensitivity. Five distinct workbook fields cover offer, commitment, amount, approach and uncertainty. Compare two suitable charging methods. Missing figures are allowed; no duration is supplied by the source. Retain the exact optional AI prompt and its limits. Keep internal calculation separate from customer-facing explanation.
+
+Continue PR-01 visual shell, full-width aligned fields, accessible help and separate optional workbooks. Draft key bbh-m07l02-v1-strands; never reuse another lesson’s key. Export full workbook and concise notes; long answers must flow without clipping. Tests cover draft isolation, reset, unavailable storage, escaping, help and long exports. Prominent PDF reminders remain at both ends. No em dashes.
