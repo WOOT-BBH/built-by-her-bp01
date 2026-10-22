@@ -196,3 +196,10 @@ Continue PR-01 visual shell, full-width aligned fields, accessible help and sepa
 Path m07-l03/. Source: BBH_M07_L03_PR-03_Product-Pricing-and-Margin_Design-A_Formatted_2026-10-14.pdf (7 pages). See source audit and lesson summary in that directory. Preserve all nine sections, full retailer discount example and maker/wholesale contrasts. Distinguish margin, markup, accounting gross margin, owner-time planning allowance and take-home pay. Keep the exact optional AI prompt and all limitations. No invented duration or target margin.
 
 Five fields: product-route, unit-cost, price-margin, remaining-costs, interpretation. Isolated key bbh-m07l03-v1-strands. Separate optional workbooks per product/route. Inherit PR-02 formatting, help behaviour and selected-workbook full/notes PDF exports. Preserve temporary-draft wording and export reminders. Tests cover source content, arithmetic, storage, isolation, reset, safe text, help and long-answer export. No em dashes.
+
+
+## Module 7 Lesson 4: PR-04 pricing method
+
+Path m07-l04/. Source: BBH_M07_L04_PR-04_Pricing-Method_Design-A_Formatted_2026-10-14.pdf (7 pages). See SOURCE-AUDIT.md and LESSON-SUMMARY.md in the lesson directory. Preserve all nine sections, exact AI prompt, full illustrator example and consultant/retailer contrasts. Distinguish method (cost-plus, market-informed, value-based) from charging format. Compare two methods using existing information; no final price or new research required. Keep evidence/assumption and cost/capacity qualifications.
+
+Fields: offer, known-information, method-comparison, provisional-choice, next-check. Isolated storage bbh-m07l04-v1-strands. Inherit PR-03 visual shell, help, separate optional workbooks and full/notes exports. Print spacing compacted without font reduction to keep resources together. Tests and visual checks documented in source audit. Preserve export reminders and no em dashes.
