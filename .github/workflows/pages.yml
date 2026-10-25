@@ -26,6 +26,7 @@ jobs:
       - name: Prepare lesson
         run: |
           mkdir -p _site
+          cp -R assessment _site/assessment
           cp index.html styles.css script.js _site/
           mkdir -p _site/bp02
           cp bp02/index.html bp02/styles.css bp02/script.js _site/bp02/
