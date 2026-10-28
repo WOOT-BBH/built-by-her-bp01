@@ -184,6 +184,8 @@ jobs:
           cp m08-l06/index.html m08-l06/styles.css m08-l06/script.js _site/m08-l06/
           mkdir -p _site/m03-l07
           cp m03-l07/index.html m03-l07/styles.css m03-l07/script.js _site/m03-l07/
+          mkdir -p _site/introduction
+          cp introduction/index.html introduction/styles.css introduction/script.js _site/introduction/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
