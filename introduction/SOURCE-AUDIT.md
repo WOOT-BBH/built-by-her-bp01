@@ -9,3 +9,6 @@ Directory: exact Circle lesson URLs observed in authenticated course DOM on 28 O
 Storage: isolated INTRO version 1, independent optional starting-point notes. Four full-width aligned fields with accessible guidance. Full and notes-only PDF exports and prominent keep-your-work reminders. Module links maintained in module-links.json for future updates.
 
 Validation: confirmed 12 modules, 80 source lesson titles, 79 Circle lesson links and one explicitly unavailable SA-07 link. Functional checks passed for four fields, separate workbooks, reset, help/Escape, unavailable storage, and full/notes exports. Empty, normal and 90-line answers rendered to PDFs; all final long-answer lines and final directory entries verified. Notes PDF and directory page visually inspected. Desktop browser preview confirms branding, aligned module cards and accessible expandable lesson lists. Joined the paragraph crossing source pages 2–3.
+
+
+28 October update: SA-07 is now published at https://woot-bbh.github.io/built-by-her-bp01/m08-l07/. Directory links directly to its workbook and labels that exception. Circle still has 79 lesson entries; no Circle URL invented.
