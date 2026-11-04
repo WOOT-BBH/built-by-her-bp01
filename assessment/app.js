@@ -43,28 +43,128 @@ function results(){const r=E.analyse(D,state);const name=state.profile.name.trim
 function reset(){const d=document.createElement('dialog');d.innerHTML=`<h2>Start again?</h2><p>This clears only this assessment’s temporary draft. Download your current plan first if you want to keep it.</p><div class="actions"><button id="cancel-reset" class="secondary">Keep my answers</button><button id="confirm-reset">Clear and start again</button></div>`;document.body.append(d);d.showModal();on('cancel-reset',()=>{d.close();d.remove();});on('confirm-reset',()=>{state={schema:2,view:'welcome',section:1,profile:{name:'',stage:'',offer:'',goal:'',urgent:'none'},answers:{},action:'',review:'',note:''};d.close();d.remove();go('welcome');});d.addEventListener('cancel',()=>d.remove());}
 function report(){const r=E.analyse(D,state);return {r,date:new Intl.DateTimeFormat('en-GB',{dateStyle:'long',timeZone:'Europe/London'}).format(new Date()),title:r.partial?'Personal learning plan so far':'Personal learning plan'};}
 function pdfClean(s){return String(s??'').replace(/[‘’]/g,"'").replace(/[“”]/g,'"').replace(/[–—]/g,'-').replace(/↗/g,'').replace(/…/g,'...').replace(/[^\x20-\u024f\u2000-\u206f\u20ac\n]/g,'');}
-function createPDF(){
- const {r,date,title}=report(),doc=new window.jspdf.jsPDF({unit:'mm',format:'a4'});let y=24;for(const style of ['normal','bold']){doc.addFileToVFS('BBH-'+style+'.ttf',window.BBH_FONTS[style]);doc.addFont('BBH-'+style+'.ttf','BBH',style);}const left=17,width=176,bottom=278;
- const navy=[23,63,89],teal=[35,142,140],ink=[38,61,73];
- function header(){doc.setTextColor(...navy);doc.setFont('BBH','bold');doc.setFontSize(9);doc.text('BUILT BY HER ASSESSMENT',left,13);doc.setDrawColor(...teal);doc.line(left,17,193,17);y=26;}
- function page(){doc.addPage();header();}
- function room(h){if(y+h>bottom)page();}
- function text(s,size=10,bold=false,color=ink){doc.setFont('BBH',bold?'bold':'normal');doc.setFontSize(size);doc.setTextColor(...color);const lines=doc.splitTextToSize(pdfClean(s),width);const step=size*.46;for(const line of lines){room(step);doc.text(line,left,y);y+=step;}y+=3;}
- function heading(s){room(18);text(s,16,true,navy);}
- function link(label,url){room(9);doc.setFont('BBH','bold');doc.setFontSize(10);doc.setTextColor(...teal);doc.textWithLink(pdfClean(label),left,y,{url});y+=8;}
- header();heading('Built By Her Assessment');text(title,19,true,navy);text((state.profile.name?state.profile.name+' | ':'')+date);text('Stage: '+(STAGES[state.profile.stage]||'Not selected'));text('Focus: '+(GOALS[state.profile.goal]||'Not selected'));text('Offer: '+(OFFERS[state.profile.offer]||'Not selected'));text('Immediate pressure: '+(PRESSURES[state.profile.urgent]||'None selected'));
- if(r.partial)text(`PARTIAL PLAN: ${r.answered} of ${r.total} questions answered. ${r.counts.unanswered} unanswered items are excluded, not treated as gaps. The order may change as you answer more.`,10,true);
- text(`${r.counts.done} in place | ${r.counts.progress} in progress | ${r.counts.help} need help | ${r.counts.start} not started | ${r.counts.na} not relevant now`);
- text('Start with one of your first three priorities. There is no requirement to complete the whole list. This self-reflection is not a business score, a compliance check or professional advice.');
- heading('Your next step');text('First action: '+(state.action||'Choose one lesson or one small action.'));text('Review date: '+(state.review||'Not set'));text('Time or support: '+(state.note||'Not added'));
- heading('How this plan is ordered');text('Reported gaps linked to immediate pressure come first, then protection and essential records for launch/trading, early foundations for idea/launch, your chosen focus and other gaps. Within groups: need help, not started, then in progress. A related reported gap may move before a lesson as useful preparation. These are suggestions, not compulsory prerequisites.');text('In-place, not-relevant and unanswered items do not become recommendations. Product/service pricing follows your selected offer type.');
- link('Open the BBH Toolkit','https://www.womenofourtime.uk/c/founders-toolkit');text('Lesson links are clickable and may require your Womeniverse login. Download your completed lesson workbook too.');
- page();heading('Your learning priorities');if(!r.ordered.length)text('No learning gaps marked. Review unanswered or deferred areas when useful; keep what is working.');
- r.ordered.forEach((q,i)=>{room(48);text((i+1)+'. '+q.title,12,true,navy);text(`Module ${q.module} | Lesson ${q.lesson} | ${D.modules[q.module-1].title}`,9,true);text('Your answer: '+E.LABELS[q.answer],9);text('Why here: '+q.reason,10);text('You will work towards: '+q.outcome,10);link(q.circle?'Open this lesson in the BBH Toolkit':'Open this lesson workbook',q.url);if(!q.circle)text('Direct workbook link while its Circle lesson entry is being added.',9);doc.setDrawColor(215,225,229);room(6);doc.line(left,y,193,y);y+=8;});
- page();heading('Your complete answer record');D.modules.forEach(m=>{room(26);text(`Module ${m.id}: ${m.title}`,12,true,navy);D.questions.filter(q=>q.module===m.id).forEach(q=>{room(17);text(`${q.lesson}. ${q.statement}`,10);text(E.applicable(q,state.profile)?(E.LABELS[state.answers[q.id]]||'Unanswered'):'Not included for your offer type',9,true);});});
- room(35);heading('Support and review');text('Bring one clear question to someone who can help. Learning activities prepare you to take a next step; they do not certify that arrangements are correct or complete.');link('Explore the WOOT Support Hub','https://www.womenofourtime.uk/women-of-our-time-support-hub');
- const total=doc.getNumberOfPages();for(let i=1;i<=total;i++){doc.setPage(i);doc.setFont('BBH','normal');doc.setFontSize(8);doc.setTextColor(82,105,118);doc.text(`Built By Her | Assessment 2.0 | ${i} / ${total}`,left,289);}return doc;
+function createPDF(logo){
+ const {r,date,title}=report(), doc=new window.jspdf.jsPDF({unit:'mm',format:'a4',compress:true});
+ const navy='#1A3F59',teal='#238F8D',orange='#C4421B',purple='#8B3F92',ink='#21313F',grey='#536771',line='#D9E5E7',pale='#F6FAFA',white='#FFFFFF';
+ const shades=[navy,teal,orange,purple], M=15,W=180;
+ let section='',y=0;
+ doc.setProperties({title:'Built By Her Assessment | Personal learning plan'});
+ for(const style of ['normal','bold']){
+   doc.addFileToVFS('BBH-'+style+'.ttf',window.BBH_FONTS[style]);
+   doc.addFont('BBH-'+style+'.ttf','BBH',style);
+ }
+ function font(size,bold,color){doc.setFont('BBH',bold?'bold':'normal');doc.setFontSize(size);doc.setTextColor(color);}
+ function label(s,x,base,size=9,bold=false,color=ink,align='left'){
+   font(size,bold,color);doc.text(pdfClean(s),x,base,{align});
+ }
+ function wrap(s,width,size,bold=false){font(size,bold,ink);return doc.splitTextToSize(pdfClean(s),width);}
+ function box(x,top,w,h,fill,stroke=fill,radius=3){
+   doc.setDrawColor(stroke);doc.setFillColor(fill);doc.setLineWidth(.3);
+   doc.roundedRect(x,top,w,h,radius,radius,'FD');
+ }
+ function brand(w,top){
+   if(logo)doc.addImage(logo,'PNG',M,top,w,w*276/900,'BBH','FAST');
+   else label('BUILT BY HER',M,top+9,18,true,navy);
+ }
+ function newPage(){
+   doc.addPage();brand(48,7);label(section,195,16,12,true,navy,'right');
+   doc.setDrawColor(line);doc.line(M,26,195,26);y=33;
+ }
+ function room(height){if(y+height>278)newPage();}
+ function paragraph(s,size=9){
+   for(const row of wrap(s,W-6,size)){room(5);label(row,M+2,y+4,size);y+=5;}y+=2;
+ }
+ function band(s){box(M,y,W,10,navy);label(s,M+4,y+6.7,9,true,white);y+=13;}
+ function hyperlink(s,x,base,url){font(9,true,teal);doc.textWithLink(s,x,base,{url});}
+ brand(76,9);label('Built By Her Assessment',M,43,20,true,navy);
+ const meta=[state.profile.name,date].filter(Boolean).join(' · ');
+ label(meta,M,50,meta.length>85?7:9,false,grey);doc.setDrawColor(line);doc.line(M,54,195,54);
+ box(M,59,W,35,navy);label('YOUR BUSINESS PROFILE',21,68,8,true,white);
+ label(STAGES[state.profile.stage]||'Your business',21,77,13,true,white);
+ label(GOALS[state.profile.goal]||'Choose your focus when ready',21,85,9,false,white);
+ box(148,67,40,12,orange);label(r.partial?'Partial plan':'Personal plan',168,74.8,9,true,white,'center');
+ label(r.answered+' / '+r.total+' answered',168,85,8,false,white,'center');
+ [['IN PLACE',r.counts.done,navy],['NEED HELP',r.counts.help,orange],['NOT STARTED',r.counts.start,purple]].forEach(([key,value,c],i)=>{
+   const x=M+61*i;box(x,100,58,23,white,line);label(key,x+4,108,7,true,grey);label(String(value),x+4,118,16,true,c);
+ });
+ label('Your module snapshot',M,133,12,true,navy);
+ label('Bars show how many relevant answers you marked in place.',M,139,8,false,grey);
+ r.modules.forEach((m,i)=>{
+   const x=M+(i>=6?94:0),base=147+(i%6)*8.1,c=m.counts;
+   const total=Object.values(c).reduce((a,b)=>a+b,0)-(c.na||0)-(c.unanswered||0);
+   const pct=total?Math.round(100*(c.done||0)/total):null;
+   label(m.id+'. '+m.title,x,base,7.4,false,ink);
+   label(pct===null?'N/A':pct+'%',x+85,base,7.4,true,grey,'right');
+   box(x,base+1.5,85,2,'#E8F1F1','#E8F1F1',1);
+   if(pct)box(x,base+1.5,85*pct/100,2,shades[i%4],shades[i%4],1);
+ });
+ box(M,198,W,38,'#FFF7F3','#F1C8B8');label('WHAT TO FOCUS ON NOW',21,206,9,true,orange);
+ const first=r.ordered[0];
+ if(first){
+   const rows=wrap(first.title,167,12,true);rows.forEach((s,i)=>label(s,21,214+i*5,12,true,navy));
+   hyperlink('Open '+(first.circle?'lesson':'workbook')+'  '+first.module+'.'+first.lesson,21,230,first.url);
+ }else label('Revisit your answers when your priorities change.',21,219,11,true,navy);
+ label('WHAT TO DO NEXT',M,246,9,true,teal);
+ const steps=first?['Start with the focus above. Open the lesson and choose one activity.','Record one action and the support or time you need.','Use the ranked lessons on the following pages when you are ready.']:['Review your module snapshot.','Revisit any unanswered or deferred areas when they become relevant.','Keep this plan and return when your business changes.'];
+ steps.forEach((s,i)=>{const base=254+i*7;doc.setFillColor(teal);doc.circle(18,base-1,2.6,'F');label(String(i+1),18,base,7,true,white,'center');label(s,24,base,8.5);});
+ label(r.counts.progress+' in progress   ·   '+r.counts.na+' not relevant now   ·   '+r.counts.unanswered+' unanswered',M,278,8,false,grey);
+ section='Your personal learning plan';newPage();band(title);
+ paragraph([OFFERS[state.profile.offer],PRESSURES[state.profile.urgent]].filter(Boolean).join('  ·  '));
+ if(r.partial)paragraph('Partial plan. Recommendations use the answers you have given so far.');
+ paragraph('Your plan puts immediate pressures first, then relevant protection, foundations and your chosen focus. A preparatory lesson can appear before the lesson it supports.');
+ hyperlink('Open the BBH Toolkit',M+2,y+4,'https://www.womenofourtime.uk/c/founders-toolkit');y+=11;
+ for(const [i,q] of r.ordered.entries()){
+   const head=wrap(q.title,158,10,true),body=wrap(q.reason,165,8.5),out=wrap(q.outcome,165,8.5);
+   const height=23+4.4*head.length+3.8*(body.length+out.length);
+   room(height+3);box(M,y,W,height,pale,line);doc.setFillColor(teal);doc.circle(22,y+7,4,'F');
+   label(String(i+1),22,y+8,8,true,white,'center');label('MODULE '+q.module+'  ·  LESSON '+q.lesson+'  ·  '+E.LABELS[q.answer].toUpperCase(),30,y+7,7,true,teal);
+   let base=y+14;
+   for(const row of head){label(row,21,base,10,true,navy);base+=4.4;}
+   base+=1;for(const row of body){label(row,21,base,8.5);base+=3.8;}
+   base+=1;for(const row of out){label(row,21,base,8.5);base+=3.8;}
+   hyperlink(q.circle?'Open this lesson':'Open the lesson workbook',21,base+3,q.url);y+=height+3;
+ }
+ if(!first)paragraph('You have no learning gaps marked in your answers so far.');
+ room(27);band('Your next step');paragraph(state.action||'Choose one lesson or one small action.');paragraph('Review date: '+(state.review||'Not set'));paragraph('Time or support: '+(state.note||'Not added'));
+ room(11);hyperlink('Explore the WOOT Support Hub',M+2,y+4,'https://www.womenofourtime.uk/women-of-our-time-support-hub');
+ section='Your full answers';newPage();
+ const badge={done:teal,progress:purple,help:orange,start:navy,na:grey};
+ for(const m of D.modules){
+   const heading='Module '+m.id+' · '+m.title;room(32);band(heading);
+   for(const q of D.questions.filter(q=>q.module===m.id)){
+     const rows=wrap(q.statement,131,8.6),h=Math.max(11,rows.length*4+4);
+     if(y+h>278){newPage();band(heading+' (continued)');}
+     box(M,y,W,h,pale,line,2);rows.forEach((s,i)=>label(s,19,y+5.5+i*4,8.6));
+     const applicable=E.applicable(q,state.profile),key=applicable?state.answers[q.id]:null;
+     const status=applicable?(E.LABELS[key]||'Unanswered'):'Outside offer type';
+     box(154,y+h/2-3.5,38,7,badge[key]||grey,badge[key]||grey,3);
+     label(status,173,y+h/2+1.1,7.5,true,white,'center');y+=h+2;
+   }
+   y+=3;
+ }
+ const pages=doc.getNumberOfPages();
+ for(let i=1;i<=pages;i++){doc.setPage(i);doc.setDrawColor(line);doc.line(M,283,195,283);label('Built By Her · Inside the Womeniverse™',M,289,7,false,grey);label(i+' / '+pages,195,289,7,false,grey,'right');}
+ return doc;
 }
-async function downloadPDF(){const el=document.getElementById('export-status');try{if(!window.jspdf)throw new Error('PDF library unavailable');const doc=createPDF();doc.save('Built-By-Her-Learning-Plan-'+new Date().toISOString().slice(0,10)+'.pdf');el.textContent='Your PDF download has been requested. Check your Downloads or chosen folder before leaving. If it does not appear, use Print / save as PDF below.';}catch{el.textContent='The PDF download could not start. Use Print / save as PDF below, or open the assessment in your browser and try again.';}}
-function printPlan(){const {r,date,title}=report();let host=document.getElementById('print-plan');if(!host){host=document.createElement('section');host.id='print-plan';host.className='print-only';document.body.append(host);}host.innerHTML=`<h1>Built By Her Assessment</h1><h2>${title}</h2><p>${esc(state.profile.name)} · ${date}</p><p>${r.answered}/${r.total} answered. ${r.counts.unanswered} unanswered; ${r.counts.na} not relevant now.</p><p>Stage: ${esc(STAGES[state.profile.stage])}. Focus: ${esc(GOALS[state.profile.goal])}.</p><p>Start with one of your first three priorities. The order considers immediate pressure, protection, foundations, your focus and useful preparation. This is a self-reflection, not a compliance check.</p><h2>Your next step</h2><p>${esc(state.action||'Not added')}</p><p>Review: ${esc(state.review||'Not set')}<br>Time or support: ${esc(state.note||'Not added')}</p>${r.ordered.map((q,i)=>`<article><h2>${i+1}. ${esc(q.title)}</h2><p>Module ${q.module} · Lesson ${q.lesson} · ${E.LABELS[q.answer]}</p><p>${esc(q.reason)}</p><p>${esc(q.outcome)}</p><a href="${esc(q.url)}">Open this lesson</a></article>`).join('')}<h2>Answer record</h2>${D.questions.map(q=>`<p><strong>M${q.module} L${q.lesson}</strong> ${esc(q.statement)}<br>${E.applicable(q,state.profile)?E.LABELS[state.answers[q.id]]||'Unanswered':'Not included for your offer type'}</p>`).join('')}`;window.print();document.getElementById('export-status').textContent='Choose Save as PDF in the print window, then check your saved file. Opening or closing the print window does not confirm a save.';}
+async function brandedReport(){
+ const response=await fetch('logo.png');if(!response.ok)throw Error('Logo unavailable');
+ return createPDF(new Uint8Array(await response.arrayBuffer()));
+}
+async function downloadPDF(){
+ const el=document.getElementById('export-status');
+ try{const doc=await brandedReport();doc.save('Built-By-Her-Learning-Plan-'+new Date().toISOString().slice(0,10)+'.pdf');el.textContent='Your branded PDF is ready. Check your Downloads or open the print copy below.';}
+ catch{el.textContent='Your report could not load. Keep this page open and retry when connected.';}
+}
+async function printPlan(){
+ const el=document.getElementById('export-status');
+ const preview=window.open('about:blank','_blank');
+ if(preview)preview.opener=null;
+ try{
+   const doc=await brandedReport(),url=URL.createObjectURL(doc.output('blob'));
+   const link=document.createElement('a');link.href=url;link.target='_blank';link.rel='noopener';link.textContent='Open your branded PDF';
+   el.replaceChildren(link,document.createTextNode(' and use its print control. Choose one page per sheet to match the original layout.'));
+   if(preview&&!preview.closed)preview.location.replace(url);else el.scrollIntoView({block:'center'});
+   window.addEventListener('pagehide',()=>URL.revokeObjectURL(url),{once:true});
+ }catch{if(preview)preview.close();el.textContent='Your print copy could not load. Keep this page open and retry when connected.';}
+}
 render();
