@@ -115,10 +115,10 @@ function createPDF(logo){
  hyperlink('Open the BBH Toolkit',M+2,y+4,'https://www.womenofourtime.uk/c/founders-toolkit');y+=11;
  for(const [i,q] of r.ordered.entries()){
    const head=wrap(q.title,158,10,true),body=wrap(q.reason,165,8.5),out=wrap(q.outcome,165,8.5);
-   const height=23+4.4*head.length+3.8*(body.length+out.length);
+   const height=27+4.4*head.length+3.8*(body.length+out.length);
    room(height+3);box(M,y,W,height,pale,line);doc.setFillColor(teal);doc.circle(22,y+7,4,'F');
    label(String(i+1),22,y+8,8,true,white,'center');label('MODULE '+q.module+'  ·  LESSON '+q.lesson+'  ·  '+E.LABELS[q.answer].toUpperCase(),30,y+7,7,true,teal);
-   let base=y+14;
+   let base=y+18;
    for(const row of head){label(row,21,base,10,true,navy);base+=4.4;}
    base+=1;for(const row of body){label(row,21,base,8.5);base+=3.8;}
    base+=1;for(const row of out){label(row,21,base,8.5);base+=3.8;}
