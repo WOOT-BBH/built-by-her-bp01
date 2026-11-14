@@ -27,7 +27,7 @@ jobs:
         run: |
           mkdir -p _site
           cp -R assessment _site/assessment
-          cp index.html styles.css script.js _site/
+          cp index.html styles.css script.js toolkit-measurement.js _site/
           mkdir -p _site/bp02
           cp bp02/index.html bp02/styles.css bp02/script.js _site/bp02/
           mkdir -p _site/bp03
@@ -190,6 +190,10 @@ jobs:
           cp m08-l07/index.html m08-l07/styles.css m08-l07/script.js _site/m08-l07/
           mkdir -p _site/hour-for-hour
           cp hour-for-hour/index.html hour-for-hour/styles.css hour-for-hour/script.js _site/hour-for-hour/
+      - name: Add optional Toolkit measurement
+        run: |
+          node scripts/test-measurement.cjs
+          python3 scripts/prepare-measurement.py _site
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
